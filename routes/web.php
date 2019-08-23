@@ -23,7 +23,7 @@ Route::get('/home', 'HomeController@index')->name('home');
 Route::resource('/admin/users', 'AdminUsersController');
 Route::get('/admin/users', 'AdminUsersController@index')->name('admin.users.index');
 Route::get('/admin/users/create', 'AdminUsersController@create')->name('admin.users.create');
-
+Route::get('/admin/users/{user}/edit', 'AdminUsersController@edit')->name('admin.users.edit');
 
 // Route::get('/admin', function () {
 
