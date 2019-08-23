@@ -29,3 +29,7 @@ Route::get('/admin/users/{user}/edit', 'AdminUsersController@edit')->name('admin
 
 //     return view('admin.index');
 // });
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
