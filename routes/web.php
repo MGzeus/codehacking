@@ -20,15 +20,19 @@ Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
 
 // USERS ROUTE
+// Route::group(['middleware' => 'admin'], function () {
 Route::resource('/admin/users', 'AdminUsersController');
 Route::get('/admin/users', 'AdminUsersController@index')->name('admin.users.index');
 Route::get('/admin/users/create', 'AdminUsersController@create')->name('admin.users.create');
 Route::get('/admin/users/{user}/edit', 'AdminUsersController@edit')->name('admin.users.edit');
 
-// Route::get('/admin', function () {
 
-//     return view('admin.index');
 // });
+// POSTS ROUTE
+Route::resource('/admin/posts', 'AdminPostsController');
+Route::get('/admin/posts', 'AdminPostsController@index')->name('admin.posts.index');
+Route::get('/admin/posts/create', 'AdminPostsController@create')->name('admin.posts.create');
+
 
 Auth::routes();
 
