@@ -4,6 +4,27 @@
 
     <h1>Posts</h1>
 
+    @if(Session::has('deleted_post'))
+
+        <div class="alert alert-danger">
+            <p>{{session('deleted_post')}}</p>
+        </div>
+    @endif
+
+    @if(Session::has('updated_post'))
+
+        <div class="alert alert-success">
+            <p>{{session('updated_post')}}</p>
+        </div>
+    @endif
+
+    @if(Session::has('created_post'))
+
+        <div class="alert alert-success">
+            <p>{{session('created_post')}}</p>
+        </div>
+    @endif
+
     <table class="table table-striped">
         <thead>
           <tr>
@@ -27,7 +48,7 @@
                 <tr>
                     <td>{{$post->id}}</td>
                     <td><img height="40" src="{{$post->photo ? $post->photo->file : '/images/no-image.png'}}" alt=""></td>
-                    <td>{{$post->user->name}}</td>
+                    <td><a href="{{route('admin.posts.edit',$post->id)}}">{{$post->user->name}}</a></td>
                     <td>{{$post->category ? $post->category->name : 'Uncategorized'}}</td>
                     <td>{{$post->title}}</td>
                     <td>{{$post->body}}</td>

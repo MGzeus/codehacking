@@ -32,7 +32,7 @@ Route::get('/admin/users/{user}/edit', 'AdminUsersController@edit')->name('admin
 Route::resource('/admin/posts', 'AdminPostsController');
 Route::get('/admin/posts', 'AdminPostsController@index')->name('admin.posts.index');
 Route::get('/admin/posts/create', 'AdminPostsController@create')->name('admin.posts.create');
-
+Route::get('/admin/posts/{posts}/edit', 'AdminPostsController@edit')->name('admin.posts.edit');
 
 Auth::routes();
 
