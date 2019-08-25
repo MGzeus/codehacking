@@ -34,9 +34,17 @@ Route::get('/admin/posts', 'AdminPostsController@index')->name('admin.posts.inde
 Route::get('/admin/posts/create', 'AdminPostsController@create')->name('admin.posts.create');
 Route::get('/admin/posts/{posts}/edit', 'AdminPostsController@edit')->name('admin.posts.edit');
 
-Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
+// CATEGORIES ROUTE
+Route::resource('/admin/categories', 'AdminCategoriesController');
+Route::get('/admin/categories', 'AdminCategoriesController@index')->name('admin.categories.index');
+Route::get('/admin/categories/{categories}/edit', 'AdminCategoriesController@edit')->name('admin.categories.edit');
+
+
+
+
+
+
 
 Auth::routes();
 
