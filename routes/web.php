@@ -37,3 +37,7 @@ Route::get('/admin/posts/{posts}/edit', 'AdminPostsController@edit')->name('admi
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');

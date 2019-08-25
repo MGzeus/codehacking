@@ -14,16 +14,17 @@ class CreatePostsTable extends Migration
     public function up()
     {
         Schema::create('posts', function (Blueprint $table) {
-            $table->bigIncrements('id');
-            $table->integer('user_id')->index()->unsigned()->nullable();
-            $table->integer('category_id')->index()->unsigned()->nullable();
-            $table->integer('photo_id')->index()->unsigned()->nullable();
-            $table->string('title')->nullable();
-            $table->text('body')->nullable();
+            $table->increments('id');
+            $table->integer('user_id')->unsigned()->nullable()->index();
+            $table->integer('photo_id')->unsigned()->nullable()->index();
+            $table->integer('category_id')->unsigned()->nullable()->index();
+            $table->string('title');
+            $table->text('body');
             $table->timestamps();
+            // delete record with relationship of tables
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
         });
     }
-
     /**
      * Reverse the migrations.
      *
