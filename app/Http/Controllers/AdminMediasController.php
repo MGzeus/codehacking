@@ -2,11 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Category;
+use App\Photo;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
 
-class AdminCategoriesController extends Controller
+class AdminMediasController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -16,10 +16,9 @@ class AdminCategoriesController extends Controller
     public function index()
     {
         //
+        $photos = Photo::all();
 
-        $categories = Category::all();
-
-        return view('admin.categories.index', compact('categories'));
+        return view('admin.media.index', compact('photos'));
     }
 
     /**
@@ -31,6 +30,7 @@ class AdminCategoriesController extends Controller
     {
         //
 
+        return view('admin.media.create');
     }
 
     /**
@@ -42,10 +42,15 @@ class AdminCategoriesController extends Controller
     public function store(Request $request)
     {
         //
+        $file = $request->file('file');
 
-        Category::create($request->all());
+        $name = time() . $file->getClientOriginalName();
 
-        return redirect('/admin/categories');
+        $file->move('images', $name);
+
+        Photo::create(['file' => $name]);
+
+        return redirect('/admin/media');
     }
 
     /**
@@ -68,9 +73,6 @@ class AdminCategoriesController extends Controller
     public function edit($id)
     {
         //
-        $category = Category::findOrFail($id);
-
-        return view('admin.categories.edit', compact('category'));
     }
 
     /**
@@ -83,10 +85,6 @@ class AdminCategoriesController extends Controller
     public function update(Request $request, $id)
     {
         //
-        $category = Category::findOrFail($id);
-        $category->update($request->all());
-        Session::flash('updated_category', 'The Category has been UPDATED');
-        return redirect('/admin/categories');
     }
 
     /**
@@ -98,10 +96,14 @@ class AdminCategoriesController extends Controller
     public function destroy($id)
     {
         //
-        $category = Category::findOrFail($id)->delete();
+        $photo = Photo::findOrFail($id);
 
-        Session::flash('deleted_category', 'The Category has been DELETED');
+        unlink(public_path() . $photo->file);
 
-        return redirect('/admin/categories');
+        $photo->delete();
+
+        Session::flash('deleted_photo', 'The photo has been deleted');
+
+        return redirect('/admin/media');
     }
 }

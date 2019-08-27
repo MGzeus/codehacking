@@ -41,6 +41,11 @@ Route::get('/admin/categories', 'AdminCategoriesController@index')->name('admin.
 Route::get('/admin/categories/{categories}/edit', 'AdminCategoriesController@edit')->name('admin.categories.edit');
 
 
+// MEDIAS ROUTE
+Route::resource('/admin/media', 'AdminMediasController');
+Route::get('/admin/media', 'AdminMediasController@index')->name('admin.media.index');
+Route::get('/admin/media/create', 'AdminMediasController@create')->name('admin.media.create');
+
 
 
 

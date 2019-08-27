@@ -3,6 +3,27 @@
 
 @section('content')
 
+    @if(Session::has('deleted_category'))
+
+        <div class="alert alert-danger">
+            <p>{{session('deleted_category')}}</p>
+        </div>
+    @endif
+
+    @if(Session::has('updated_category'))
+
+        <div class="alert alert-success">
+            <p>{{session('updated_category')}}</p>
+        </div>
+    @endif
+
+    @if(Session::has('created_category'))
+
+        <div class="alert alert-success">
+            <p>{{session('created_category')}}</p>
+        </div>
+    @endif
+
 
     <h1>Categories</h1>
 
@@ -43,7 +64,7 @@
 
                         <tr>
                             <td>{{$category->id}}</td>
-                            <td>{{$category->name}}</td>
+                            <td><a href="{{route('admin.categories.edit', $category->id)}}">{{$category->name}}</a></td>
                             <td>{{$category->created_at ? $category->created_at->diffForHumans() : "No date available"}}</td>
                         </tr>
 
