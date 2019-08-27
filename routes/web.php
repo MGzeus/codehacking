@@ -34,6 +34,8 @@ Route::get('/admin/posts', 'AdminPostsController@index')->name('admin.posts.inde
 Route::get('/admin/posts/create', 'AdminPostsController@create')->name('admin.posts.create');
 Route::get('/admin/posts/{posts}/edit', 'AdminPostsController@edit')->name('admin.posts.edit');
 
+Route::get('/post/{id}', 'AdminPostsController@post')->name('home.post');
+
 
 // CATEGORIES ROUTE
 Route::resource('/admin/categories', 'AdminCategoriesController');
@@ -46,11 +48,8 @@ Route::resource('/admin/media', 'AdminMediasController');
 Route::get('/admin/media', 'AdminMediasController@index')->name('admin.media.index');
 Route::get('/admin/media/create', 'AdminMediasController@create')->name('admin.media.create');
 
+// COMMENTS ROUTE
+Route::resource('/admin/comments', 'PostCommentsController');
+Route::get('/admin/comments', 'PostCommentsController@index')->name('admin.comments.index');
 
-
-
-
-
-Auth::routes();
-
-Route::get('/home', 'HomeController@index')->name('home');
+Route::resource('/admin/comment/replies', 'CommentRepliesController');
