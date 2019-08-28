@@ -51,5 +51,6 @@ Route::get('/admin/media/create', 'AdminMediasController@create')->name('admin.m
 // COMMENTS ROUTE
 Route::resource('/admin/comments', 'PostCommentsController');
 Route::get('/admin/comments', 'PostCommentsController@index')->name('admin.comments.index');
+Route::get('/admin/comments/{comment}', 'PostCommentsController@show')->name('admin.comments.show');
 
 Route::resource('/admin/comment/replies', 'CommentRepliesController');

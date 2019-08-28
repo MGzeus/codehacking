@@ -162,7 +162,7 @@
                             </li>
 
                             <li>
-                                <a href="/">Create Category</a>
+                                <a href="">Create Category</a>
                             </li>
 
                         </ul>
